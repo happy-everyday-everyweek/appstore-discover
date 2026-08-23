@@ -1,0 +1,12 @@
+{
+  "type": "collection",
+  "slug": "ai-agent-picks",
+  "label": "编辑精选",
+  "title": "把 AI 装进口袋",
+  "subtitle": "4 个应用",
+  "background": {
+    "gradient": ["#2B3A67", "#0F1B30"]
+  },
+  "publish_date": "8 月 23 日 周日",
+  "apps": [1001, 1002, 1003, 1004]
+}
