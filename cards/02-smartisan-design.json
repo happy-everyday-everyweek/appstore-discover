@@ -1,0 +1,12 @@
+{
+  "type": "article",
+  "slug": "smartisan-design",
+  "label": "文章",
+  "title": "让 Smartisan OS 的设计美学重生",
+  "subtitle": "Smartisan-original-launcher 作者",
+  "background": {
+    "color": "#5C4A31"
+  },
+  "publish_date": "8 月 22 日 周六",
+  "article": "smartisan-design.md"
+}
