@@ -1,0 +1,12 @@
+{
+  "type": "collection",
+  "slug": "open-source-music",
+  "label": "开源精选",
+  "title": "开源音乐播放器",
+  "subtitle": "1 个应用",
+  "background": {
+    "cover": "open-source-music.png"
+  },
+  "publish_date": "8 月 21 日 周五",
+  "apps": [1002]
+}
