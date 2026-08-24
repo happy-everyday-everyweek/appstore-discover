@@ -28,6 +28,18 @@ COVERS_DIR = "covers"
 TOKEN_ENV = "GH_TOKEN"
 
 
+
+def retry_urlopen(req, data=None, timeout=60, retries=5):
+    import time
+    last = None
+    for attempt in range(retries):
+        try:
+            return urllib.request.urlopen(req, data=data, timeout=timeout)
+        except Exception as e:
+            last = e
+            time.sleep(2 * (attempt + 1))
+    raise last
+
 def gh_api(path, method="GET", body=None, token=None):
     import urllib.request
     import urllib.error
@@ -41,7 +53,7 @@ def gh_api(path, method="GET", body=None, token=None):
     if data:
         req.add_header("Content-Type", "application/json")
     try:
-        with urllib.request.urlopen(req, data=data, timeout=30) as resp:
+        with retry_urlopen(req, data=data, timeout=60) as resp:
             raw = resp.read()
             return resp.status, (json.loads(raw) if "json" in resp.headers.get("Content-Type", "") else raw)
     except urllib.error.HTTPError as e:
@@ -205,7 +217,7 @@ def main():
         req.add_header("Content-Type", "application/octet-stream")
         req.add_header("Accept", "application/vnd.github+json")
         try:
-            with urllib.request.urlopen(req, timeout=120) as resp:
+            with retry_urlopen(req, timeout=120) as resp:
                 print(f"[appstore] 上传 {fname}: HTTP {resp.status}")
         except Exception as e:
             print(f"[appstore] 上传 {fname} 失败: {e}")
@@ -215,3 +227,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
