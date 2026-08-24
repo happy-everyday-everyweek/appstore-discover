@@ -3,12 +3,15 @@
   "slug": "open-source-music",
   "label": "开源精选",
   "title": "开源音乐播放器",
-  "subtitle": "1 个应用",
+  "subtitle": "4 个应用",
   "background": {
     "cover": "open-source-music.png"
   },
-  "publish_date": "8 月 21 日 周五",
+  "publish_date": "8 月 24 日 周一 · 更新",
   "apps": [
-    1076
+    1076,
+    1066,
+    1113,
+    1415
   ]
 }
