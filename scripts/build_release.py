@@ -30,6 +30,7 @@ TOKEN_ENV = "GH_TOKEN"
 
 
 def retry_urlopen(req, data=None, timeout=60, retries=5):
+    import urllib.request
     import time
     last = None
     for attempt in range(retries):
