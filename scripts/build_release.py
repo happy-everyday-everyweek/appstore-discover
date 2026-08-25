@@ -98,7 +98,7 @@ def read_cards():
 def collect_assets():
     """assets/ 内容：{相对路径: bytes}。"""
     files = {}
-    for base, prefix in ((ARTICLES_DIR, "articles/"), (COVERS_DIR, "covers/")):
+    for base, prefix in ((ARTICLES_DIR, "assets/articles/"), (COVERS_DIR, "assets/covers/")):
         if not os.path.isdir(base):
             continue
         for name in sorted(os.listdir(base)):
@@ -129,6 +129,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", required=True)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--force", action="store_true", help="忽略内容无变更检查，强制重新发布（用于补齐资产）")
     args = ap.parse_args()
     token = os.environ.get(TOKEN_ENV, "")
 
@@ -158,7 +159,7 @@ def main():
                 break
 
     changed, removed = diff_cards(prev_cards, cards)
-    if prev_cards == cards:
+    if prev_cards == cards and not args.force:
         print("[appstore] 内容无变化，不发布")
         sys.exit(0)
 
@@ -168,12 +169,12 @@ def main():
         card = changed[slug]
         if card.get("type") == "article":
             art = card.get("article")
-            if art and ("articles/" + art) in assets:
-                inc_files["articles/" + art] = assets["articles/" + art]
+            if art and ("assets/articles/" + art) in assets:
+                inc_files["assets/articles/" + art] = assets["assets/articles/" + art]
         bg = card.get("background") or {}
         cover = bg.get("cover")
-        if cover and ("covers/" + cover) in assets:
-            inc_files["covers/" + cover] = assets["covers/" + cover]
+        if cover and ("assets/covers/" + cover) in assets:
+            inc_files["assets/covers/" + cover] = assets["assets/covers/" + cover]
     inc_zip = pack_zip(inc_files)
 
     patch = {
