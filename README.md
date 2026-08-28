@@ -1,4 +1,4 @@
-# AppStore Discover · 推荐页内容仓库
+# Only Discover · 推荐页内容仓库
 
 推荐页（App Store Today 风格全宽大卡流）的内容源。仅由维护者一人维护，不开放 Fork/PR 收录。
 
