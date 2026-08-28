@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AppStore Discover 推荐包发布脚本。
+"""Only Discover 推荐包发布脚本。
 
 用法：
   python3 build_release.py --repo owner/appstore-discover [--dry-run]
